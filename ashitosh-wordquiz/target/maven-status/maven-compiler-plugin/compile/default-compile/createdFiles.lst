@@ -1,0 +1,11 @@
+com/quiz/model/beans/ErrorMessagePayload.class
+com/quiz/service/WordListService.class
+com/quiz/service/WordListServiceImpl.class
+com/quiz/controller/WordListController.class
+com/quiz/resources/ListResource.class
+com/quiz/WordQuizApp.class
+com/quiz/repository/WordListRepository.class
+com/quiz/model/WordList.class
+com/quiz/model/beans/RestErrorMessage.class
+com/quiz/model/beans/RestMessage.class
+com/quiz/model/beans/RestDataMessage.class

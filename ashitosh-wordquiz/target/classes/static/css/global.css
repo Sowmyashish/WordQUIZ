@@ -1,0 +1,101 @@
+body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+    height: 100%;
+    padding-bottom: 100px;
+}
+
+.container-fluid {
+    padding: 60px 50px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #0097A7;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+}
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #0097A7 !important;
+    background-color: #fff !important;
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+footer{
+    height: 100px;
+    width:100%;
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+
+footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #0097A7;
+}
+
+#footer-notes{
+    padding-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #546E7A;
+    font-weight: 600;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+}
+
+#word-list{
+    margin-top : 8%;
+}
+
+.hdtx{
+    color:#333;
+}
+.mdtx{
+    color:#565656;
+}
+.lttx{
+    color:#666;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #0097A7 !important;
+}
+
+#addNewList{
+    margin-top : 50px;
+}
+
+#btn-add-list{
+    margin-top : 8%;
+}
+
+#addWord{
+    margin-top : 50px;
+}
+
+.result {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #7a6805;
+    font-weight: 600;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    text-align: center;
+}

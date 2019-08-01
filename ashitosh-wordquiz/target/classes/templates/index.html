@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>WordQuiz</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/global.css}" href="../static/css/global.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WordQuiz</a>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Word Lists</a></li>
+                <li><a data-toggle="modal" href="#addWord">Add Word</a></li>
+                <li><a href="/getQuizWords">Quiz</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id= "word-list" class="container" th:if="${wordList.size() > 0}">
+    <center><h2 id="word-list-title">Word Lists</h2></center>
+
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr class="hdtx">
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="wordListItem,index : ${wordList}" class="lttx">
+            <td><a th:text="${wordListItem.listName}" th:href="|/getWords?wordListId=${wordListItem.id}|"></a></td>
+            <td th:text="${wordListItem.listDescription}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <center><button id="btn-add-list-table" type="button" class="btn btn-primary .btn-md" data-toggle="modal" data-target="#addNewList">ADD NEW LIST</button></center>
+</div>
+
+<center th:if="${wordList.size() == 0}"><button id="btn-add-list" type="button" class="btn btn-primary .btn-md" data-toggle="modal" data-target="#addNewList">ADD NEW LIST</button></center>
+
+
+	<div class="modal fade" id="displayWords" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">WORDS</h4>
+				</div>
+				<div class="modal-body">
+				    <div><a href="/getWords">View</a></div>
+						<div id="words" class="container">
+							
+							<center>
+							<!-- 	<h2 id="word-list-title">Words</h2> -->
+							</center>
+
+							<table class="table table-hover table-striped">
+								<thead>
+									<tr class="hdtx">
+										<th>Word Name</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="wordsItem,index : ${words}" class="lttx">
+										<td th:text="${wordsItem.Word}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<div class="modal fade" id="addNewList" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">ADD NEW LIST</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/addnewlist/" method="post">
+                    <div class="form-group">
+                        <label for="listName">Name:</label>
+                        <input class="form-control" id="listName" name="listName"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="listDescription">Description:</label>
+                        <input class="form-control" id="listDescription" name="listDescription"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="addWord" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">ADD A NEW WORD</h4>
+            </div>
+            <div class="modal-body">
+         
+               <form action="/addnewword" method="post">
+               
+               
+               <div class="form-group">
+               			<label for ="word">Word:</label>
+               			<input class="form-control" id="word" name="word"/>
+               </div>
+               <div class="form-group">
+                        <label for="speech">Parts Of Speech:</label>
+                        <input class="form-control" id="pos" name="pos"/>
+              </div>
+               <div class="form-group">
+                        <label for="meaning">Meaning:</label>
+                        <input class="form-control" id="meaning" name="meaning"/>
+               </div>
+               <div class="form-group">
+                        <label for="example">Example:</label>
+                        <input class="form-control" id="example" name="example"/>
+               </div>
+                    
+               <!-- <div class="form-group">
+               			<label for ="correct_word">Correct Word:</label>
+               			<input class="form-control" id="correct_word" name="correct_word"/>
+               </div> -->
+              <!--   <div class="form-group">
+                        <label for="category">Category:</label>
+                        <input class="form-control" id="category" name="category"/>
+                </div> -->
+                
+                 <!-- <div class="form-group">
+                        <label for="remaning">Remaining:</label>
+                        <input class="form-control" id="remaning" name="remaning"/>
+                 </div> -->
+                    
+                    <div class="form-group">
+                    <label for = "List">List </label>
+                    <select name="listId" class="form-control">
+                     <option value="-1">--Select List--</option>
+                     <option th:each="wordListItem,index : ${wordList}" th:value="${wordListItem.id}" th:text="${wordListItem.listName}"></option>
+                   
+                    </select>
+                    
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+               </form>            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="container-fluid text-center">
+    <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <p id="footer-notes">Word Quiz</p>
+</footer>
+
+</body>
+
+</html>
